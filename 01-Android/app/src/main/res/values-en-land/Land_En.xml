@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="condition_1">LAND English</string>
+    <color name="text_color">#FFFFFF</color>
+    <color name="background_condition_1">#7FD500FF</color>
+</resources>
