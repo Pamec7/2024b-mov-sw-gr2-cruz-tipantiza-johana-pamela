@@ -19,7 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "gr2sw2024b_jpc"
-include(":app")
+rootProject.name = "gr2sw2024b_jpct"
 include(":app")
  

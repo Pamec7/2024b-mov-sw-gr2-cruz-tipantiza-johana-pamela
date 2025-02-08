@@ -1,10 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FormCiudadActivity">
+
+    <EditText
+        android:id="@+id/etNombreCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:hint="Nombre de la ciudad"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/etPoblacionCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:hint="Población"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/etNombreCiudad"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/etAltitudCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:hint="Altitud (metros)"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/etPoblacionCiudad"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/etFechaFundacionCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:hint="Fecha de fundación (dd/mm/aaaa)"
+        app:layout_constraintTop_toBottomOf="@id/etAltitudCiudad"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <CheckBox
+        android:id="@+id/cbEsCapital"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:minWidth="48dp"
+        android:padding="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Capital"
+        app:layout_constraintTop_toBottomOf="@id/etFechaFundacionCiudad"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/btnGuardarCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:backgroundTint="#BC6E0589"
+        android:text="Guardar"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cbEsCapital" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

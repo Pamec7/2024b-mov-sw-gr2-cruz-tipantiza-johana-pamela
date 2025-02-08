@@ -1,14 +1,16 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.firebase.appdistribution)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
-    namespace = "com.example.gr2sw2024b_jpc"
+    namespace = "com.example.gr2sw2024b_jpct"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.gr2sw2024b_jpc"
+        applicationId = "com.example.gr2sw2024b_jpct"
         minSdk = 27
         targetSdk = 34
         versionCode = 1
@@ -27,11 +29,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 

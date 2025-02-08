@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">gr2sw2024b_jpc</string>
-    <string name="saludo">Hello Friend</string>
+    <string name="app_name">gr2sw2024b_jpct</string>
+    <string name="saludo">Hello Friends</string>
     <color name="saludo_color">#964800</color>
-
-
+    <string-array name="string_array_opciones_dialogo">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+    </string-array>
 </resources>
+
