@@ -15,8 +15,8 @@
     <ListView
         android:id="@+id/lvCiudades"
         android:layout_width="match_parent"
-        android:layout_height="504dp"
-        android:layout_weight="1" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <Button
         android:id="@+id/btnNuevaCiudad"
@@ -24,16 +24,17 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#BC6E0589"
         android:text="Nueva Ciudad"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/btnVolverPais"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:backgroundTint="#BC6E0589"
-        android:text="Volver a paises"
+        android:layout_height="wrap_content"
+        android:text="Volver a Países"
         android:textColor="@color/white"
         android:textStyle="bold" />
+
+
 
 </LinearLayout>

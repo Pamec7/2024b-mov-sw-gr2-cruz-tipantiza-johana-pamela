@@ -18,6 +18,7 @@ class CiudadesActivity : AppCompatActivity() {
     private lateinit var tvPais: TextView
     private lateinit var lvCiudades: ListView
     private lateinit var btnNuevaCiudad: Button
+    private lateinit var btnVolver: Button
     private lateinit var pais: Pais
     private lateinit var adapter: ArrayAdapter<String>
 
@@ -32,6 +33,10 @@ class CiudadesActivity : AppCompatActivity() {
         tvPais = findViewById(R.id.tvPais)
         lvCiudades = findViewById(R.id.lvCiudades)
         btnNuevaCiudad = findViewById(R.id.btnNuevaCiudad)
+        btnVolver = findViewById(R.id.btnVolverPais)
+        btnVolver.setOnClickListener {
+            finish()
+        }
 
         tvPais.text = "Ciudades de: ${pais.nombre}"
         actualizarLista()
