@@ -2,4 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menu_editar_ciudad" android:title="Editar"/>
     <item android:id="@+id/menu_eliminar_ciudad" android:title="Eliminar"/>
+    <item android:id="@+id/menu_ver_mapa" android:title="Ver en mapa"/>
+
 </menu>

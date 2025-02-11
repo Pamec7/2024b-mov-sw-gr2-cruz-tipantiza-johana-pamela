@@ -1,4 +1,4 @@
-package com.example.deber02_cruz
+package com.example.examen2_cruz
 
 data class Ciudad(
     val id: Int = 0,
@@ -6,5 +6,7 @@ data class Ciudad(
     val poblacion: Int,
     val altitud: Double,
     val fechaFundacion: String,
-    val esCapital: Boolean
+    val esCapital: Boolean,
+    val latitud: Double,
+    val longitud: Double
 )

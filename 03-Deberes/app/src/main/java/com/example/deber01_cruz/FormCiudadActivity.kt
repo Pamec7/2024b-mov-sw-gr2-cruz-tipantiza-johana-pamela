@@ -6,6 +6,8 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 
 class FormCiudadActivity : AppCompatActivity() {
 
@@ -82,6 +84,9 @@ class FormCiudadActivity : AppCompatActivity() {
 
         setResult(RESULT_OK)
         Toast.makeText(this, "Ciudad guardada", Toast.LENGTH_SHORT).show()
+
+        Snackbar.make(btnGuardarCiudad, "Ciudad guardada exitosamente", Snackbar.LENGTH_SHORT).show()
+
         finish()
     }
 }

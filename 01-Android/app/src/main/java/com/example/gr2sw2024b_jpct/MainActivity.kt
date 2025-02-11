@@ -119,6 +119,14 @@ class MainActivity : AppCompatActivity() {
                 irActividad(ECrudEntrenador::class.java)
             }
 
+        val botonGMaps = findViewById<Button>(R.id.btn_google_maps)
+        botonGMaps
+            .setOnClickListener(
+                irActividad(GGoogleMaps::class.java)
+            )
+
+
+
 
 
     }

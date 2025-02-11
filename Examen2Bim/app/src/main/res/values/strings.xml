@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Examen2_Cruz</string>
+    <string name="title_activity_mapa">MapaActivity</string>
+    <string name="title_activity_ggoogle_maps2">GGoogleMaps2</string>
+</resources>

@@ -1,48 +1,105 @@
 package com.example.examen2_cruz
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.os.Bundle
-
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.examen2_cruz.databinding.ActivityGgoogleMaps2Binding
+import com.google.android.material.snackbar.Snackbar
 
-class GGoogleMaps2 : AppCompatActivity(), OnMapReadyCallback {
+class GGoogleMaps : AppCompatActivity() {
 
-    private lateinit var mMap: GoogleMap
-    private lateinit var binding: ActivityGgoogleMaps2Binding
+    private lateinit var mapa: GoogleMap
+    private var permisos = false
+    private val nombrePermisoFine = android.Manifest.permission.ACCESS_FINE_LOCATION
+    private val nombrePermisoCoarse = android.Manifest.permission.ACCESS_COARSE_LOCATION
+
+    // Coordenadas de Quito, Ecuador
+    private val quito = LatLng(-0.180653, -78.467834)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_ggoogle_maps)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
-        binding = ActivityGgoogleMaps2Binding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        solicitarPermisos()
+        inicializarLogicaMapa()
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+    private fun tengoPermisos(): Boolean {
+        return (ContextCompat.checkSelfPermission(this, nombrePermisoFine) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, nombrePermisoCoarse) == PackageManager.PERMISSION_GRANTED)
+    }
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    private fun solicitarPermisos() {
+        if (!tengoPermisos()) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(nombrePermisoFine, nombrePermisoCoarse),
+                1
+            )
+        }
+    }
+
+    private fun inicializarLogicaMapa() {
+        val fragmentoMapa = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        fragmentoMapa.getMapAsync { googleMap ->
+            mapa = googleMap
+            establecerConfiguracionMapa()
+            moverAQuito()
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun establecerConfiguracionMapa() {
+        with(mapa) {
+            if (tengoPermisos()) {
+                isMyLocationEnabled = true
+                uiSettings.isMyLocationButtonEnabled = true
+            }
+            uiSettings.isZoomControlsEnabled = true
+        }
+    }
+
+    private fun moverAQuito() {
+        anadirMarcador(quito, "Quito, Ecuador")
+        moverCamaraConZoom(quito)
+    }
+
+    private fun moverCamaraConZoom(latLang: LatLng, zoom: Float = 12f) {
+        mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(latLang, zoom))
+    }
+
+    private fun anadirMarcador(latLang: LatLng, title: String) {
+        mapa.addMarker(MarkerOptions().position(latLang).title(title))
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1 && grantResults.isNotEmpty()) {
+            if (tengoPermisos()) {
+                establecerConfiguracionMapa()
+            } else {
+                Snackbar.make(findViewById(R.id.main), "Permisos denegados", Snackbar.LENGTH_LONG).show()
+            }
+        }
     }
 }

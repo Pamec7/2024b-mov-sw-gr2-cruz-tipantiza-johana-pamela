@@ -1,11 +1,10 @@
-package com.example.deber01_cruz
+package com.example.deber02_cruz
 
 data class Pais(
-    var id: Int,
-    var nombre: String,
-    var codigoISO: String,
-    var continente: String,
-    var poblacion: Int,
-    var esMiembroONU: Boolean,
-    val ciudades: MutableList<Ciudad> = mutableListOf()
+    val id: Int = 0,
+    val nombre: String,
+    val codigoISO: String,
+    val continente: String,
+    val poblacion: Int,
+    val esMiembroONU: Boolean
 )

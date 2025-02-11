@@ -1,20 +1,36 @@
 package com.example.examen2_cruz
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
-class GoogleMapsPlaceHolder : AppCompatActivity() {
+class GoogleMapsPlaceHolder : AppCompatActivity(), OnMapReadyCallback {
+
+    private lateinit var mMap: GoogleMap
+    private var latitud: Double = -0.180653  // Quito por defecto
+    private var longitud: Double = -78.467834
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_google_maps_place_holder)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        // Obtener coordenadas del Intent
+        latitud = intent.getDoubleExtra("LATITUD", latitud)
+        longitud = intent.getDoubleExtra("LONGITUD", longitud)
+
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+        val ubicacion = LatLng(latitud, longitud)
+        mMap.addMarker(MarkerOptions().position(ubicacion).title("Ubicación guardada"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, 15f))
     }
 }

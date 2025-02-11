@@ -1,4 +1,4 @@
-package com.example.deber02_cruz
+package com.example.examen2_cruz
 
 data class Pais(
     val id: Int = 0,

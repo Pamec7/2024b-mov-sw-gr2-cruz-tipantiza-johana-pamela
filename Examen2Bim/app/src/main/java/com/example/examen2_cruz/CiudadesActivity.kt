@@ -1,4 +1,4 @@
-package com.example.deber02_cruz
+package com.example.examen2_cruz
 
 import android.content.Intent
 import android.os.Bundle
@@ -19,7 +19,6 @@ class CiudadesActivity : AppCompatActivity() {
     private lateinit var tvPais: TextView
     private lateinit var lvCiudades: ListView
     private lateinit var btnNuevaCiudad: Button
-    private lateinit var btnVolver: Button
     private lateinit var dbHelper: DatabaseHelper
     private lateinit var adapter: ArrayAdapter<String>
     private lateinit var pais: Pais
@@ -30,36 +29,31 @@ class CiudadesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ciudades)
         dbHelper = DatabaseHelper(this)
 
-        // Obtener ID del país
+        // Obtener ID del país del Intent
         val paisId = intent.getIntExtra("PAIS_ID", -1)
         pais = dbHelper.obtenerTodosPaises().find { it.id == paisId }!!
 
-        // Configurar vistas
+        // Vincular vistas
         tvPais = findViewById(R.id.tvPais)
         lvCiudades = findViewById(R.id.lvCiudades)
         btnNuevaCiudad = findViewById(R.id.btnNuevaCiudad)
-        btnVolver = findViewById(R.id.btnVolverPais)
 
         tvPais.text = "Ciudades de: ${pais.nombre}"
         actualizarLista()
 
-        // Botón para nueva ciudad
+        // Botón para agregar nueva ciudad
         btnNuevaCiudad.setOnClickListener {
-            val intent = Intent(this,FormCiudadActivity::class.java).apply {
+            val intent = Intent(this, FormCiudadActivity::class.java).apply {
                 putExtra("PAIS_ID", pais.id)
             }
             startActivityForResult(intent, 1)
         }
 
-        // Botón para volver
-        btnVolver.setOnClickListener {
-            finish()
-        }
-
-        // Registrar menú contextual
+        // Registrar menú contextual para la lista
         registerForContextMenu(lvCiudades)
     }
 
+    // Actualizar lista de ciudades
     private fun actualizarLista() {
         ciudades = dbHelper.obtenerCiudadesDePais(pais.id).toMutableList()
         adapter = ArrayAdapter(
@@ -71,18 +65,25 @@ class CiudadesActivity : AppCompatActivity() {
         adapter.notifyDataSetChanged()
     }
 
-    // Menú contextual para ciudades
-    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+    // Crear menú contextual
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
         super.onCreateContextMenu(menu, v, menuInfo)
         menuInflater.inflate(R.menu.menu_contextual_ciudad, menu)
     }
 
+    // Manejar clics en el menú contextual
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
-        val ciudad = ciudades[info.position]
+        val posicion = info.position
+        val ciudad = ciudades[posicion]
 
         return when (item.itemId) {
             R.id.menu_editar_ciudad -> {
+                // Editar ciudad
                 val intent = Intent(this, FormCiudadActivity::class.java).apply {
                     putExtra("PAIS_ID", pais.id)
                     putExtra("CIUDAD_ID", ciudad.id)
@@ -91,6 +92,7 @@ class CiudadesActivity : AppCompatActivity() {
                 true
             }
             R.id.menu_eliminar_ciudad -> {
+                // Eliminar ciudad
                 AlertDialog.Builder(this)
                     .setTitle("Eliminar ciudad")
                     .setMessage("¿Eliminar ${ciudad.nombre}?")
@@ -107,10 +109,20 @@ class CiudadesActivity : AppCompatActivity() {
                     .show()
                 true
             }
+            R.id.menu_ver_mapa -> {
+                // Abrir mapa con coordenadas de la ciudad
+                val intent = Intent(this, GoogleMapsPlaceHolder::class.java).apply {
+                    putExtra("LATITUD", ciudad.latitud)
+                    putExtra("LONGITUD", ciudad.longitud)
+                }
+                startActivity(intent)
+                true
+            }
             else -> super.onContextItemSelected(item)
         }
     }
 
+    // Actualizar lista después de guardar/editar una ciudad
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) actualizarLista()

@@ -1,10 +1,10 @@
-package com.example.deber01_cruz
+package com.example.deber02_cruz
 
 data class Ciudad(
-    var id: Int,
-    var nombre: String,
-    var poblacion: Int,
-    var altitud: Double,
-    var fechaFundacion: String,
-    var esCapital: Boolean
+    val id: Int = 0,
+    val nombre: String,
+    val poblacion: Int,
+    val altitud: Double,
+    val fechaFundacion: String,
+    val esCapital: Boolean
 )
