@@ -1,4 +1,4 @@
-package com.example.deber02_cruz
+package com.example.examen02_cruz
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,9 +21,11 @@ class CiudadesActivity : AppCompatActivity() {
     private lateinit var btnNuevaCiudad: Button
     private lateinit var btnVolver: Button
     private lateinit var dbHelper: DatabaseHelper
-    private lateinit var adapter: ArrayAdapter<String>
     private lateinit var pais: Pais
     private var ciudades = mutableListOf<Ciudad>()
+    private lateinit var adapter: CiudadAdapter
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +47,7 @@ class CiudadesActivity : AppCompatActivity() {
 
         // Botón para nueva ciudad
         btnNuevaCiudad.setOnClickListener {
-            val intent = Intent(this,FormCiudadActivity::class.java).apply {
+            val intent = Intent(this, FormCiudadActivity::class.java).apply {
                 putExtra("PAIS_ID", pais.id)
             }
             startActivityForResult(intent, 1)
@@ -62,11 +64,7 @@ class CiudadesActivity : AppCompatActivity() {
 
     private fun actualizarLista() {
         ciudades = dbHelper.obtenerCiudadesDePais(pais.id).toMutableList()
-        adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_list_item_1,
-            ciudades.map { it.nombre }
-        )
+        adapter = CiudadAdapter(this, ciudades)
         lvCiudades.adapter = adapter
         adapter.notifyDataSetChanged()
     }
@@ -105,6 +103,16 @@ class CiudadesActivity : AppCompatActivity() {
                     }
                     .setNegativeButton("No", null)
                     .show()
+                true
+            }
+            R.id.menu_ver_mapa -> {
+                val ciudad = ciudades[info.position]
+                val intent = Intent(this, GGoogleMaps::class.java).apply {
+                    putExtra("latitud", ciudad.latitud) // Key en minúscula
+                    putExtra("longitud", ciudad.longitud)
+                    putExtra("titulo", ciudad.nombre)
+                }
+                startActivity(intent)
                 true
             }
             else -> super.onContextItemSelected(item)

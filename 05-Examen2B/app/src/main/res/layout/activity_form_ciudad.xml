@@ -45,16 +45,39 @@
         app:layout_constraintTop_toBottomOf="@id/etAltitudCiudad"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <!-- Campos agregados para coordenadas -->
+
     <CheckBox
         android:id="@+id/cbEsCapital"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="180dp"
         android:minWidth="48dp"
         android:padding="12dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="Capital"
-        app:layout_constraintTop_toBottomOf="@id/etFechaFundacionCiudad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etFechaFundacionCiudad" />
+
+    <EditText
+        android:id="@+id/etLatitud"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:hint="Latitud"
+        android:inputType="numberDecimal|numberSigned"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFechaFundacionCiudad" />
+
+    <EditText
+        android:id="@+id/etLongitud"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:hint="Longitud"
+        android:inputType="numberDecimal|numberSigned"
+        app:layout_constraintTop_toBottomOf="@id/etLatitud"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
@@ -68,6 +91,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cbEsCapital" />
+        app:layout_constraintTop_toBottomOf="@id/etLongitud" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
