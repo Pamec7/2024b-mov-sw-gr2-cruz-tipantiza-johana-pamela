@@ -82,7 +82,7 @@ class FormPaisActivity : AppCompatActivity() {
         if (paisEditando == null) {
             dbHelper.insertarPais(nuevoPais)
         } else {
-            // Implementar actualización si es necesario
+            dbHelper.actualizarPais(nuevoPais)
         }
 
         Snackbar.make(btnGuardar, "País guardado", Snackbar.LENGTH_SHORT).show()

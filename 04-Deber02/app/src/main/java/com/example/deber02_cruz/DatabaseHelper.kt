@@ -3,7 +3,9 @@ package com.example.deber02_cruz
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -126,6 +128,26 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return id
     }
 
+    fun actualizarPais(pais: Pais): Int {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(COL_NOMBRE, pais.nombre)
+            put(COL_CODIGO_ISO, pais.codigoISO)
+            put(COL_CONTINENTE, pais.continente)
+            put(COL_POBLACION, pais.poblacion)
+            put(COL_ES_MIEMBRO_ONU, pais.esMiembroONU)
+        }
+        // Asegúrate de usar el ID del país
+        val filasAfectadas = db.update(
+            TABLE_PAISES,
+            values,
+            "$COL_PAIS_ID = ?", // ← Usar el ID como criterio
+            arrayOf(pais.id.toString())
+        )
+        db.close()
+        return filasAfectadas
+    }
+
     fun obtenerCiudadesDePais(paisId: Int): List<Ciudad> {
         val ciudades = mutableListOf<Ciudad>()
         val db = this.readableDatabase
@@ -158,4 +180,31 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.delete(TABLE_CIUDADES, "$COL_CIUDAD_ID = ?", arrayOf(ciudadId.toString()))
         db.close()
     }
+
+    fun actualizarCiudad(ciudad: Ciudad): Int {
+        val db = this.writableDatabase
+        try {
+            val values = ContentValues().apply {
+                put(COL_NOMBRE, ciudad.nombre)
+                put(COL_POBLACION, ciudad.poblacion)
+                put(COL_ALTITUD, ciudad.altitud)
+                put(COL_FECHA_FUNDACION, ciudad.fechaFundacion)
+                put(COL_ES_CAPITAL, ciudad.esCapital)
+            }
+            val result = db.update(
+                TABLE_CIUDADES,
+                values,
+                "$COL_CIUDAD_ID = ?",
+                arrayOf(ciudad.id.toString())
+            )
+            Log.d("UPDATE_CIUDAD", "Resultado: $result, Valores: $values")
+            return result
+        } catch (e: SQLiteException) {
+            Log.e("UPDATE_CIUDAD", "Error al actualizar: ${e.message}")
+            return -1
+        } finally {
+            db.close()
+        }
+    }
+
 }

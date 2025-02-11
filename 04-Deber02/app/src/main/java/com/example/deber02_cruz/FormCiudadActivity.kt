@@ -24,7 +24,7 @@ class FormCiudadActivity : AppCompatActivity() {
         setContentView(R.layout.activity_form_ciudad)
         dbHelper = DatabaseHelper(this)
 
-        // Obtener ID del país y ciudad (si es edición)
+        // Obtener ID del país y ciudad
         val paisId = intent.getIntExtra("PAIS_ID", -1)
         val ciudadId = intent.getIntExtra("CIUDAD_ID", -1)
         pais = dbHelper.obtenerTodosPaises().find { it.id == paisId }!!
@@ -37,7 +37,6 @@ class FormCiudadActivity : AppCompatActivity() {
         cbEsCapital = findViewById(R.id.cbEsCapital)
         btnGuardarCiudad = findViewById(R.id.btnGuardarCiudad)
 
-        // Si es edición, cargar datos
         if (ciudadId != -1) {
             ciudadEditando = dbHelper.obtenerCiudadesDePais(pais.id).find { it.id == ciudadId }
             ciudadEditando?.let {
@@ -80,7 +79,7 @@ class FormCiudadActivity : AppCompatActivity() {
         if (ciudadEditando == null) {
             dbHelper.insertarCiudad(nuevaCiudad, pais.id)
         } else {
-            // Implementar actualización si es necesario
+            dbHelper.actualizarCiudad(nuevaCiudad)
         }
 
         Snackbar.make(btnGuardarCiudad, "Ciudad guardada", Snackbar.LENGTH_SHORT).show()
