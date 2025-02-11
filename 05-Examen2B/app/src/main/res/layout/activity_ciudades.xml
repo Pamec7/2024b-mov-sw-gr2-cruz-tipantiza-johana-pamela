@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lista de Ciudades"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/tvPais"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:id="@+id/lvCiudades"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/btnNuevaCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#BC6E0589"
+        android:text="Nueva Ciudad"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnVolverPais"
+        android:layout_width="match_parent"
+        android:backgroundTint="#BC6E0589"
+        android:layout_height="wrap_content"
+        android:text="Volver a Países"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+
+
+</LinearLayout>
