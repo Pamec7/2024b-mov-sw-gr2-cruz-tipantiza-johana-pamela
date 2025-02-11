@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import android.Manifest
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
@@ -25,10 +27,14 @@ class GGoogleMaps : AppCompatActivity() {
     private lateinit var mapa: GoogleMap
     private val nombrePermisoFine = Manifest.permission.ACCESS_FINE_LOCATION
     private val nombrePermisoCoarse = Manifest.permission.ACCESS_COARSE_LOCATION
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ggoogle_maps)
+
+        progressBar = findViewById(R.id.progressBar)
+        progressBar.visibility = View.VISIBLE
 
         findViewById<Button>(R.id.btnVolver).setOnClickListener {
             finish() // Regresa a CiudadesActivity
@@ -64,6 +70,7 @@ class GGoogleMaps : AppCompatActivity() {
             val ubicacion = LatLng(lat, lon)
             anadirMarcador(ubicacion, titulo)?.showInfoWindow()
             moverCamaraZoom(ubicacion)
+            progressBar.visibility = View.GONE
         }
     }
 

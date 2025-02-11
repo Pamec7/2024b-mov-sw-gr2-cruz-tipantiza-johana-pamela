@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var lvPaises: ListView
     private lateinit var btnCrearPais: Button
     private lateinit var dbHelper: DatabaseHelper
-    private lateinit var adapter: ArrayAdapter<String>
+    private lateinit var adapter: PaisAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun actualizarLista() {
         val paises = dbHelper.obtenerTodosPaises()
-        adapter = ArrayAdapter<String>(
-            this,
-            android.R.layout.simple_list_item_1,
-            paises.map { "${it.nombre} (${it.codigoISO})" }
-        )
+        adapter = PaisAdapter(this, paises)
         lvPaises.adapter = adapter
     }
 
