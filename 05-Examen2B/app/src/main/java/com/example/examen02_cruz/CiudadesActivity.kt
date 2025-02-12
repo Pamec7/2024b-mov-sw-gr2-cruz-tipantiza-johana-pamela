@@ -108,7 +108,7 @@ class CiudadesActivity : AppCompatActivity() {
             R.id.menu_ver_mapa -> {
                 val ciudad = ciudades[info.position]
                 val intent = Intent(this, GGoogleMaps::class.java).apply {
-                    putExtra("latitud", ciudad.latitud) // Key en minúscula
+                    putExtra("latitud", ciudad.latitud)
                     putExtra("longitud", ciudad.longitud)
                     putExtra("titulo", ciudad.nombre)
                 }
