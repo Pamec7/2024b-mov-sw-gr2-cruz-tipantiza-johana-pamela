@@ -38,7 +38,7 @@ class MapaActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         val ecuador = LatLng(-1.8312, -78.1834)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(ecuador, 10f))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(ecuador, 7f))
 
         map.setOnMapClickListener { latLng ->
             map.clear()

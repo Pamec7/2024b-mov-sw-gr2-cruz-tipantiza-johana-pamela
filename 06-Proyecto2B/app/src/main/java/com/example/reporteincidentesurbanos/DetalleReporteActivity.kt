@@ -74,7 +74,7 @@ class DetalleReporteActivity : AppCompatActivity(), OnMapReadyCallback {
         map = googleMap
         val ubicacion = LatLng(latitud, longitud)
         map.addMarker(MarkerOptions().position(ubicacion).title("Ubicación del reporte"))
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, 13f))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, 17f))
     }
 
     private fun verificarPermisos() {

@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     android:background="#ECECFE">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="Incidentes Urbanos Quito"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="297dp"
+        android:layout_height="277dp"
+        app:srcCompat="@drawable/captura_de_pantalla" />
+
     <EditText
         android:id="@+id/etEmailLogin"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:hint="Correo electrónico"
         android:inputType="textEmailAddress"
@@ -16,7 +34,7 @@
 
     <EditText
         android:id="@+id/etPasswordLogin"
-        android:layout_width="match_parent"
+        android:layout_width="322dp"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
         android:inputType="textPassword"
@@ -24,12 +42,12 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
+        android:layout_width="293dp"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
         android:backgroundTint="#230C61"
-        android:textColor="#FFFFFF"
-        android:padding="12dp" />
+        android:padding="12dp"
+        android:text="Iniciar Sesión"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/tvRegister"
@@ -40,4 +58,8 @@
         android:paddingTop="16dp"
         android:clickable="true"
         android:focusable="true"/>
+
+
+
+
 </LinearLayout>
