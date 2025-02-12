@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RegistroIncidentesUrbanos</string>
+    <string name="title_activity_map_selector_aactivity">MapSelectorAActivity</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#ECECFE</color>
+    <color name="boton">#230C61</color>
+    <color name="primario">#BB96D0</color>
+    <color name="secundario">#8149F1</color>
+    <color name="texto">#230C61</color>
+</resources>
+
+

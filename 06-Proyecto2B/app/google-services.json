@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "562809436635",
+    "project_id": "proyecto2b-5db28",
+    "storage_bucket": "proyecto2b-5db28.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562809436635:android:e31166b1dc865c5a5c0ffe",
+        "android_client_info": {
+          "package_name": "com.example.reporteincidentesurbanos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUBqAcoJFQ89WXn1lzygcmd0qg6XaDHRQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

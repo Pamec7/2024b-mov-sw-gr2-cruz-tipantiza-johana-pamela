@@ -1,10 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AgregarReporteActivity">
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@color/background">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- EditText para el título -->
+    <EditText
+        android:id="@+id/etTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Título"
+        android:textColor="@color/texto"
+        android:backgroundTint="@color/secundario"/>
+
+    <!-- EditText para la descripción -->
+    <EditText
+        android:id="@+id/etDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripción"
+        android:textColor="@color/texto"
+        android:backgroundTint="@color/secundario"/>
+
+    <!-- Spinner para tipo de reporte -->
+    <Spinner
+        android:id="@+id/spTipoReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primario"/>
+
+    <!-- Botón para seleccionar ubicación -->
+    <Button
+        android:id="@+id/btnSeleccionarUbicacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Ubicación"
+        android:backgroundTint="@color/boton"
+        android:textColor="@android:color/white"/>
+
+    <!-- TextView para mostrar ubicación -->
+    <TextView
+        android:id="@+id/tvUbicacionSeleccionada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubicación no seleccionada"
+        android:textColor="@color/texto"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Botón para seleccionar foto -->
+    <Button
+        android:id="@+id/btnSeleccionarFoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Foto"
+        android:backgroundTint="@color/boton"
+        android:textColor="@android:color/white"/>
+
+    <!-- ImageView para previsualizar foto -->
+    <ImageView
+        android:id="@+id/ivImagen"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"/>
+
+    <!-- Botón Guardar -->
+    <Button
+        android:id="@+id/btnGuardarReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar Reporte"
+        android:backgroundTint="@color/boton"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>
+
+
